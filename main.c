@@ -1,32 +1,29 @@
 #include <stdio.h>
 #include <conio.h>
 
-
 int isItValid(char parametr[], int min, int max);
 
 int main() {
     char exitE = 0;
+
+    printf("This program uses the date, month, and year to determine the name of the day.\n");
+    printf("Max year = 2099; Min year = 1900\n");
+    printf("Enter ONLY numbers\n");
     do {
         int n = 0;
         char maxDayOfEachMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        char* days[] = {"Monday","Tuesday","Wednesday",
-            "Thursday","Friday", "Saturday","Sunday"};
-
-        printf("This program uses the date, month, and year to determine the name of the day.\n");
-        printf("Max year = 2099; Min year = 1900\n");
-        printf("Enter ONLY numbers\n");
+        char* days[] = {"Monday","Tuesday","Wednesday", "Thursday", "Friday", "Saturday","Sunday"};
 
         int date = isItValid("Date: ", 1, 31);
         int month = isItValid("Month (1-12): ", 1, 12);
         int year = isItValid("Year: ", 1900, 2099);
 
 
-        maxDayOfEachMonth[1] = (year % 100 != 0 && year % 4 == 0)
-        || (year % 400 == 0)? 29 : 28;
+        maxDayOfEachMonth[1] = (year % 100 != 0 && year % 4 == 0) || (year % 400 == 0) ? 29 : 28;
 
         if (date > maxDayOfEachMonth[month - 1]) {
-            printf("\nERROR: Month %d has only %d days.\n", month, maxDayOfEachMonth[month - 1]);
-            printf("Please enter the date again.\n\n");
+            printf("ERROR: Month %d has only %d days.\n", month, maxDayOfEachMonth[month - 1]);
+            printf("Please enter the date again.\n");
             continue;
         }
 
@@ -59,12 +56,12 @@ int isItValid(char parametr[], int min, int max) {
         int result = scanf(" %d%c", &number, &extra);
 
         if (result !=2 || extra != '\n') {
-            printf("\nERROR: Invalid input. Please enter ONLY a number without decimal places\n");
+            printf("ERROR: Invalid input. Please enter ONLY a number without decimal places\n");
             while (getchar() != '\n'){}
             continue;
         }
         if (number < min || number > max) {
-            printf("\nERROR: your value is not correct. Please enter a new number\n");
+            printf("ERROR: your value is not correct. Please enter a new number\n");
             continue;
         }
         validInput = 0;
